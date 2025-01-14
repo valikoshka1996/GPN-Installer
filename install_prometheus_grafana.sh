@@ -69,11 +69,12 @@ Restart=always
 WantedBy=multi-user.target
 EOF'
 
-# Інсталяція Grafana
-echo "Інсталяція Grafana..."
-wget https://dl.grafana.com/oss/release/grafana_9.6.0_amd64.deb
-sudo dpkg -i grafana_9.6.0_amd64.deb
-sudo apt-get install -f -y
+# Інсталяція Grafana через офіційний репозиторій
+echo "Інсталяція Grafana через офіційний репозиторій..."
+sudo apt-get install -y software-properties-common
+sudo add-apt-repository "deb https://packages.grafana.com/oss/deb stable main"
+sudo apt-get update
+sudo apt-get install grafana -y
 
 # Створення systemd сервісу для Grafana
 echo "Створення systemd сервісу для Grafana..."
